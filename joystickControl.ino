@@ -89,10 +89,10 @@ boolean moved(int val) {
 void moveShoulderLift(int val) {
   if (val < 512) {
     a = (512 - val) / 10;
-    shoulderLift.write(a);
+    shoulderLift.write(shoulderLift0+a);
   } else if (val > 512) {
     a = (val - 512) / 10;
-    shoulderLift.write(a);
+    shoulderLift.write(shoulderLift0-a);
   } else {
     shoulderLift.write(shoulderLift0);
   }
@@ -101,10 +101,10 @@ void moveShoulderLift(int val) {
 void moveShoulderOut(int val) {
   if (val < 512) {
     b = (512 - val) / 10;
-    shoulderOut.write(b);
+    shoulderOut.write(shoulderOut0+b);
   } else if (val > 512) {
     b = (val - 512) / 10;
-    shoulderOut.write(b);
+    shoulderOut.write(shoulderOut0-b);
   } else {
     shoulderOut.write(shoulderOut0);
   }
@@ -112,10 +112,10 @@ void moveShoulderOut(int val) {
 void moveBicep(int val) {
   if (val < 512) {
     c = (512 - val) / 10;
-    bicep.write(c);
+    bicep.write(bicep+0c);
   } else if (val > 512) {
     c = (val - 512) / 10;
-    bicep.write(c);
+    bicep.write(bicep-0c);
   } else {
     bicep.write(bicep0);
   }
@@ -123,10 +123,10 @@ void moveBicep(int val) {
 void moveShoulderRot(int val) {
   if (val < 512) {
     d = (512 - val) / 10;
-    shoulderRot.write(d);
+    shoulderRot.write(shoulderRot0+d);
   } else if (val > 512) {
     d = (val - 512) / 10;
-    shoulderRot.write(d);
+    shoulderRot.write(shoulderRot0-d);
   } else {
     shoulderRot.write(shoulderRot0);
   }
