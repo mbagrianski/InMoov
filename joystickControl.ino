@@ -21,11 +21,14 @@ int shoulderOut0 = 114;//up = 118
 int shoulderLift0 = 89;
 
 int a, b, c, d;
+int gripCount = 0;
 
 int joy1X = A0;
 int joy1Y = A1;
 int joy2X = A2;
 int joy2Y = A3;
+
+int button = A5;
 
 int x1, x2, y1, y2;
 
@@ -59,6 +62,8 @@ void setup() {
   shoulderOut.write(shoulderOut0);
   shoulderLift.write(shoulderLift0);
 
+  pinMode(button, INPUT);
+
 }
 
 void loop() {
@@ -70,10 +75,8 @@ void loop() {
   delay(10);
   y2 = analogRead(joy2Y);
   delay(10);
-  Serial.print(x1);
-  Serial.print(" ");
-  Serial.println(y1);
   
+
 
   if (moved(y1)) {
     moveShoulderLift(y1);
@@ -95,6 +98,12 @@ void loop() {
   } else {
     moveShoulderRot(512);
   }
+
+  if (digitalRead(button) == LOW) {
+    gripUnGrip();
+  }
+    Serial.println(digitalRead(button));
+
 
 
 }
@@ -150,4 +159,24 @@ void moveShoulderRot(int val) {
   } else {
     shoulderRot.write(shoulderRot0);
   }
+}
+
+void gripUnGrip() {
+  if (gripCount % 2 == 0) {
+    thumb.write(0);
+    index.write(0);
+    middle.write(0);
+    ring.write(0);
+    pinkie.write(0);
+    wrist.write(90);
+  } else {
+    thumb.write(90);
+    index.write(120);
+    middle.write(180);
+    ring.write(140);
+    pinkie.write(90);
+    wrist.write(90);
+  }
+  delay(300);
+  gripCount++;
 }
